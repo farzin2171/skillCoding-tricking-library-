@@ -10,6 +10,7 @@ namespace TrikingLibrary.Api
         private const string AllCors = "All";
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<TrickStore>();
             services.AddControllers();
             services.AddCors(options => options.AddPolicy(AllCors, build => build.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
         }

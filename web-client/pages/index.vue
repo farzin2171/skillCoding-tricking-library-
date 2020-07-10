@@ -16,6 +16,7 @@
       <v-card>
         <v-card-title class="headline">
          {{message}}
+         <v-btn >Reset</v-btn>
         </v-card-title>
         <v-card-text>
           <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
@@ -88,20 +89,17 @@
 import Axios from 'axios'
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
+import {mapState,mapActions,mapMutations} from 'vuex';
 export default {
   components: {
     Logo,
     VuetifyLogo
   },
-  asyncData(payload){
-     return Axios.get('http://localhost:5000/api/home')
-      .then(({ data }) => {
-        return { message: data }
-      })
-  },
-  data:() =>({
-    message : ''
-  })
+  computed:mapState({
+    message:state=>state.message
+  }),
+  async fetch(){
+    await this.$store.dispatch('fetchMessage');
+  }
 }
 </script>
