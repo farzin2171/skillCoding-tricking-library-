@@ -15,9 +15,12 @@ export const mutations={
 }
 
 export const actions={
-    async fetchMessage({commit}){
-        const message=(await Axios.get('http://localhost:5000/api/home')).data;
+     nuxtServerInit({commit}){
+        debugger;
+        //const message=(await Axios.get('http://localhost:5000/api/home')).data;
+        message="test"
         console.log(message);
         commit("setMessage",message);
+        //await dispatch('tricks/fetchTricks');
     }
 }
